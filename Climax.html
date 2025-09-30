@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climax - Tecnología y Rendimiento en Pesca</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo span {
+            font-weight: 300;
+            font-size: 16px;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4ecdc4;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background: #3db8b0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Sección de productos */
+        .products {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #ff6b35;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ff6b35;
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: white;
+            border: 2px solid #ff6b35;
+            color: #ff6b35;
+            padding: 10px 20px;
+            margin: 0 10px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: #ff6b35;
+            color: white;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eaeaea;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+            background: #f5f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b35;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ff6b35;
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ff6b35;
+        }
+        
+        .price span {
+            color: #2c3e50;
+            font-size: 16px;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        .view-btn {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+        
+        .view-btn:hover {
+            background: #e55a2b;
+        }
+        
+        /* Sección de características */
+        .features {
+            background: #ff6b35;
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .feature-item h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        /* Sección de tecnología */
+        .technology {
+            padding: 80px 0;
+            background: #f0f3f7;
+        }
+        
+        .tech-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .tech-text {
+            flex: 1;
+        }
+        
+        .tech-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tech-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .tech-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .tech-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .tech-feature i {
+            font-size: 24px;
+            color: #ff6b35;
+        }
+        
+        /* Sección de novedades */
+        .news {
+            padding: 80px 0;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .news-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .news-card:hover .news-img img {
+            transform: scale(1.1);
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4ecdc4;
+        }
+        
+        .news-date {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a2530;
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: #4ecdc4;
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #4ecdc4;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #4ecdc4;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2c3e50;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .tech-content {
+                flex-direction: column;
+            }
+            
+            .tech-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>CLIMAX<br><span>Tecnología en Movimiento</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#tecnologia">Tecnología</a></li>
+                        <li><a href="#novedades">Novedades</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Lleva tu Pesca al Siguiente Nivel</h2>
+                <p>Tecnología innovadora y diseño ergonómico para una experiencia de pesca superior.</p>
+                <a href="#productos" class="btn">Descubrir Productos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Productos -->
+    <section class="products" id="productos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Productos</h2>
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="all">Todos</button>
+                <button class="category-btn" data-category="carretes">Carretes</button>
+                <button class="category-btn" data-category="cañas">Cañas</button>
+                <button class="category-btn" data-category="combos">Combos</button>
+                <button class="category-btn" data-category="accesorios">Accesorios</button>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Producto 1 -->
+                <div class="product-card" data-category="carretes">
+                    <div class="product-img">
+                        <div class="product-badge">Nuevo</div>
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Carrete Climax">
+                    </div>
+                    <div class="product-info">
+                        <h3>Carrete Tournament Pro</h3>
+                        <p>Carrete de alta velocidad con sistema de freno magnético avanzado y construcción ultraligera.</p>
+                        <div class="product-price">
+                            <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="product-card" data-category="cañas">
+                    <div class="product-img">
+                        <div class="product-badge">Oferta</div>
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Caña Climax">
+                    </div>
+                    <div class="product-info">
+                        <h3>Caña Carbon Extreme</h3>
+                        <p>Caña de carbono de alta densidad con acción rápida y sensibilidad excepcional.</p>
+                        <div class="product-price">
+                            <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="product-card" data-category="combos">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Combo Climax">
+                    </div>
+                    <div class="product-info">
+                        <h3>Combo Performance</h3>
+                        <p>Combo perfectamente equilibrado con caña y carrete de alta gama a precio especial.</p>
+                        <div class="product-price">
+                            <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 4 -->
+                <div class="product-card" data-category="accesorios">
+                    <div class="product-img">
+                        <div class="product-badge">Popular</div>
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Accesorio Climax">
+                    </div>
+                    <div class="product-info">
+                        <h3>Línea Braid X-Treme</h3>
+                        <p>Sedal trenzado de última generación con alta resistencia y mínimo diámetro.</p>
+                        <div class="product-price">
+                            <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 5 -->
+                <div class="product-card" data-category="carretes">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Carrete Climax">
+                    </div>
+                    <div class="product-info">
+                        <h3>Carrete Spinning Lite</h3>
+                        <p>Carrete spinning ultraligero con rotor de grafito y sistema anti-twist.</p>
+                        <div class="product-price">
+                            <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 6 -->
+                <div class="product-card" data-category="accesorios">
+                    <div class="product-img">
+                        <div class="product-badge">Nuevo</div>
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Accesorio Climax">
+                    </div>
+                    <div class="product-info">
+                        <h3>Kit Señuelos Avanzado</h3>
+                        <p>Colección de señuelos de diseño aerodinámico para diferentes técnicas de pesca.</p>
+                        <div class="product-price">
+                            <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <!-- Sección de Características -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Ventajas Climax</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Tecnología Avanzada</h3>
+                    <p>Innovación constante en el desarrollo de productos de alto rendimiento.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">💪</div>
+                    <h3>Durabilidad Comprobada</h3>
+                    <p>Productos testados en condiciones extremas para garantizar máxima durabilidad.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🌟</div>
+                    <h3>Diseño Ergonómico</h3>
+                    <p>Productos diseñados para comodidad y rendimiento durante largas jornadas.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>Precio Competitivo</h3>
+                    <p>Tecnología de alta gama a precios accesibles para todos los pescadores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Climax Fishing</h3>
+                    <p>Tecnología innovadora y diseño ergonómico para llevar tu pesca al siguiente nivel.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Productos</h3>
+                    <ul>
+                        <li><a href="#">Carretes de Alta Velocidad</a></li>
+                        <li><a href="#">Cañas de Carbono</a></li>
+                        <li><a href="#">Combos Performance</a></li>
+                        <li><a href="#">Accesorios Técnicos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Email: info@climax-fishing.com</li>
+                        <li>Teléfono: +1 800 555 0123</li>
+                        <li>Dirección: 123 Innovation Ave, Tech City</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Climax Fishing. Todos los derechos reservados. Tecnología en Movimiento.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filtrado de productos por categoría
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Añadir clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Mostrar/ocultar productos según la categoría
+                    productCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Efecto de scroll suave para los enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

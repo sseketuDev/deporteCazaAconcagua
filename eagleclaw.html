@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eagle Claw - Catálogo de Pesca Profesional</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #D2691E;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #A0522D;
+        }
+        
+        /* Sección de productos */
+        .products {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #8B4513;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #D2691E;
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: white;
+            border: 2px solid #8B4513;
+            color: #8B4513;
+            padding: 10px 20px;
+            margin: 0 10px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: #8B4513;
+            color: white;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #8B4513;
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #D2691E;
+        }
+        
+        .view-btn {
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+        
+        .view-btn:hover {
+            background: #A0522D;
+        }
+        
+        /* Sección de características */
+        .features {
+            background: #8B4513;
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-item {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+        
+        .feature-item h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #5D2F0A;
+            color: #ddd;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #FFD700;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #7a4a23;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>EAGLE CLAW</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#tecnologia">Tecnología</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Tradición y Calidad en Pesca</h2>
+                <p>Desde 1925, Eagle Claw ha sido sinónimo de anzuelos y equipos de pesca confiables para pescadores de todo el mundo.</p>
+                <a href="#productos" class="btn">Ver Catálogo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Productos -->
+    <section class="products" id="productos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Productos</h2>
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="all">Todos</button>
+                <button class="category-btn" data-category="anzuelos">Anzuelos</button>
+                <button class="category-btn" data-category="cañas">Cañas</button>
+                <button class="category-btn" data-category="combos">Combos</button>
+                <button class="category-btn" data-category="accesorios">Accesorios</button>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Producto 1 -->
+                <div class="product-card" data-category="anzuelos">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Anzuelos Eagle Claw">
+                    </div>
+                    <div class="product-info">
+                        <h3>Anzuelos Lazer Sharp</h3>
+                        <p>Anzuelos de precisión con punta láser para una penetración superior. Disponible en múltiples tamaños y estilos.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="product-card" data-category="cañas">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Caña Eagle Claw">
+                    </div>
+                    <div class="product-info">
+                        <h3>Caña Featherlight</h3>
+                        <p>Caña ultraligera de grafito con acción rápida. Perfecta para pesca con señuelos ligeros y técnicas finesse.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="product-card" data-category="combos">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Combo Eagle Claw">
+                    </div>
+                    <div class="product-info">
+                        <h3>Combo Inicial Trailblazer</h3>
+                        <p>Combo perfecto para principiantes con caña, carrete, línea y accesorios incluidos. Gran valor por precio.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 4 -->
+                <div class="product-card" data-category="accesorios">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Accesorio Eagle Claw">
+                    </div>
+                    <div class="product-info">
+                        <h3>Kit de Anzuelos y Plomos</h3>
+                        <p>Kit completo con variedad de anzuelos, plomos, flotadores y accesorios esenciales para cualquier salida de pesca.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 5 -->
+                <div class="product-card" data-category="anzuelos">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Anzuelos Especiales">
+                    </div>
+                    <div class="product-info">
+                        <h3>Anzuelos Circle Hook</h3>
+                        <p>Anzuelos circulares diseñados para captura y liberación, minimizando daños a los peces. Ideal para pesca deportiva.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 6 -->
+                <div class="product-card" data-category="cañas">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Caña Profesional">
+                    </div>
+                    <div class="product-info">
+                        <h3>Caña Professional Series</h3>
+                        <p>Caña de alta gama con blank de grafito IM8 y componentes de calidad premium para el pescador exigente.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Características -->
+    <section class="features" id="tecnologia">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Tecnología Eagle Claw</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Fabricación Americana</h3>
+                    <p>Productos fabricados en EE.UU. con los más altos estándares de calidad y durabilidad.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Precisión Lazer Sharp</h3>
+                    <p>Anzuelos con punta láser para una penetración superior y mayor tasa de captura.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🌲</div>
+                    <h3>Tradición desde 1925</h3>
+                    <p>Más de 95 años de experiencia en la fabricación de equipos de pesca confiables.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>Excelente Relación Calidad-Precio</h3>
+                    <p>Productos de alta calidad a precios accesibles para todos los pescadores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Eagle Claw</h3>
+                    <p>Fabricantes de equipos de pesca de calidad desde 1925. Tradición, innovación y confiabilidad.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Productos</h3>
+                    <ul>
+                        <li><a href="#">Anzuelos</a></li>
+                        <li><a href="#">Cañas de Pesca</a></li>
+                        <li><a href="#">Combos</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Email: info@eagleclaw.com</li>
+                        <li>Teléfono: +1 800 555 0123</li>
+                        <li>Dirección: 123 Fishing Rd, Denver CO</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Eagle Claw. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filtrado de productos por categoría
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Añadir clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Mostrar/ocultar productos según la categoría
+                    productCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Efecto de scroll suave para los enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

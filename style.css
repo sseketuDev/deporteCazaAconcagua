@@ -1063,8 +1063,9 @@ footer::before {
         display: block;
     }
     
+    /* Mobile / tablet nav: off-canvas style using max-height for smooth transition */
     .nav-menu {
-        display: none;
+        display: flex;
         flex-direction: column;
         position: absolute;
         top: 100%;
@@ -1073,11 +1074,16 @@ footer::before {
         background: var(--bg-white);
         box-shadow: var(--shadow-lg);
         border-radius: 0 0 var(--radius) var(--radius);
-        overflow: hidden;
+        overflow: auto;
+        max-height: 0; /* collapsed by default */
+        transition: max-height 0.35s ease, opacity 0.35s ease;
+        opacity: 0;
     }
-    
+
     .nav-menu.active {
-        display: flex;
+        /* leave some room for the header; use large calc so it can cover tall content */
+        max-height: calc(100vh - 70px);
+        opacity: 1;
     }
     
     .nav-menu > li > a {
@@ -1096,6 +1102,27 @@ footer::before {
         border-top: none;
         transform: none;
         opacity: 1;
+    }
+
+    /* When the mega menu is opened via JS on mobile it gets .open */
+    .mega-menu.open {
+        display: block;
+        padding: 15px 20px 25px;
+        background: var(--bg-white);
+    }
+
+    /* Small adjustments to logo area to save space */
+    .logo-img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .logo-title {
+        font-size: 1.05rem;
+    }
+
+    .logo-subtitle {
+        display: none; /* ocultar subtítulo en pantallas medianas/pequeñas */
     }
     
     .about-content {
@@ -1118,6 +1145,17 @@ footer::before {
     .section-title {
         font-size: 2.2rem;
     }
+}
+
+/* Cuando el menú está abierto, evitar scroll de fondo */
+.no-scroll {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Asegurar que el nav tenga mayor z-index que el header cuando esté desplegado */
+nav {
+    z-index: 999;
 }
 
 @media (max-width: 768px) {

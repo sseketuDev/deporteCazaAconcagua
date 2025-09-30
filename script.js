@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (hamburger) {
         hamburger.addEventListener('click', function() {
             navMenu.classList.toggle('active');
+            // bloquear el scroll del fondo cuando el menú está abierto
+            document.body.classList.toggle('no-scroll', navMenu.classList.contains('active'));
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
             this.setAttribute('aria-expanded', !isExpanded);
             this.querySelector('i').classList.toggle('fa-bars');
@@ -18,11 +20,45 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
         if (!event.target.closest('nav') && !event.target.closest('.hamburger')) {
             navMenu.classList.remove('active');
+            document.body.classList.remove('no-scroll');
             if (hamburger) {
                 hamburger.setAttribute('aria-expanded', 'false');
                 hamburger.querySelector('i').classList.add('fa-bars');
                 hamburger.querySelector('i').classList.remove('fa-times');
             }
+        }
+    });
+
+    // Manejo de mega-menus en móvil: tocar el item del menú abre/cierra su mega-menu
+    const menuItems = document.querySelectorAll('.nav-menu > li');
+    menuItems.forEach(item => {
+        const mega = item.querySelector('.mega-menu');
+        const link = item.querySelector('a');
+        if (mega && link) {
+            // Añadir botón expandible para accesibilidad en pantallas pequeñas
+            link.setAttribute('aria-haspopup', 'true');
+            link.setAttribute('aria-expanded', 'false');
+            link.addEventListener('click', function(e) {
+                // Solo en pantallas móviles donde el nav está en modo colapsado
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const isOpen = mega.classList.toggle('open');
+                    link.setAttribute('aria-expanded', isOpen);
+                    // cerrar otros mega-menus
+                    menuItems.forEach(other => {
+                        if (other !== item) {
+                            const otherMega = other.querySelector('.mega-menu');
+                            const otherLink = other.querySelector('a');
+                            if (otherMega) {
+                                otherMega.classList.remove('open');
+                            }
+                            if (otherLink) {
+                                otherLink.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    });
+                }
+            });
         }
     });
     

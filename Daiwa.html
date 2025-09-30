@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daiwa - Catálogo de Pesca Profesional</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a3a5f 0%, #2c5a8a 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+        }
+        
+        /* Sección de productos */
+        .products {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #1a3a5f;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #e74c3c;
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: white;
+            border: 2px solid #1a3a5f;
+            color: #1a3a5f;
+            padding: 10px 20px;
+            margin: 0 10px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: #1a3a5f;
+            color: white;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a3a5f;
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+        
+        .view-btn {
+            background: #1a3a5f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+        
+        .view-btn:hover {
+            background: #2c5a8a;
+        }
+        
+        /* Sección de características */
+        .features {
+            background: #1a3a5f;
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-item {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+        
+        .feature-item h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f253f;
+            color: #aaa;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #e74c3c;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2c3e50;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>DAIWA</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#tecnologia">Tecnología</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Líder Mundial en Equipos de Pesca</h2>
+                <p>Descubre la innovación y calidad que han hecho de Daiwa la marca preferida por pescadores profesionales.</p>
+                <a href="#productos" class="btn">Ver Catálogo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Productos -->
+    <section class="products" id="productos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Productos</h2>
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="all">Todos</button>
+                <button class="category-btn" data-category="cañas">Cañas</button>
+                <button class="category-btn" data-category="carretes">Carretes</button>
+                <button class="category-btn" data-category="accesorios">Accesorios</button>
+                <button class="category-btn" data-category="sedales">Sedales</button>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Producto 1 -->
+                <div class="product-card" data-category="cañas">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Caña Daiwa Pro">
+                    </div>
+                    <div class="product-info">
+                        <h3>Caña Tournament Pro</h3>
+                        <p>Caña de alta sensibilidad con blank de carbono de última generación. Ideal para técnicas avanzadas.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="product-card" data-category="carretes">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Carrete Daiwa BG">
+                    </div>
+                    <div class="product-info">
+                        <h3>Carrete Saltist BG</h3>
+                        <p>Carrete de pesca en el mar con cuerpo de aluminio mecanizado y protección contra la corrosión.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="product-card" data-category="sedales">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sedal J-Braid">
+                    </div>
+                    <div class="product-info">
+                        <h3>Sedal J-Braid X8</h3>
+                        <p>Sedal trenzado de 8 hebras con gran suavidad y resistencia. Diámetro ultra fino.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 4 -->
+                <div class="product-card" data-category="accesorios">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Caja de Pesca">
+                    </div>
+                    <div class="product-info">
+                        <h3>Caja de Pesca Tournament</h3>
+                        <p>Caja organizadora con divisores ajustables y construcción resistente al agua.</p>
+                        <div class="product-price">
+                             <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 5 -->
+                <div class="product-card" data-category="cañas">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Caña Ninja">
+                    </div>
+                    <div class="product-info">
+                        <h3>Caña Ninja LT</h3>
+                        <p>Caña ultraligera con acción rápida, perfecta para técnicas de pesca con señuelos ligeros.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 6 -->
+                <div class="product-card" data-category="carretes">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Carrete Fuego">
+                    </div>
+                    <div class="product-info">
+                        <h3>Carrete Fuego LT</h3>
+                        <p>Carrete ligero con cuerpo de carbono y sistema de freno Magnum-Lite para un rendimiento superior.</p>
+                        <div class="product-price">
+                              <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="btn btn-primary" style="display:flex;align-items:center;gap:8px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;">
+                            Consultar por WhatsApp
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Características -->
+    <section class="features" id="tecnologia">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Tecnología Daiwa</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Innovación Constante</h3>
+                    <p>Desarrollamos tecnologías revolucionarias que mejoran la experiencia de pesca.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎣</div>
+                    <h3>Calidad Superior</h3>
+                    <p>Materiales de primera calidad y procesos de fabricación avanzados.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🌊</div>
+                    <h3>Resistencia Comprobada</h3>
+                    <p>Productos diseñados para soportar las condiciones más exigentes.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Garantía de Rendimiento</h3>
+                    <p>Equipos utilizados y avalados por pescadores profesionales en todo el mundo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Daiwa Fishing</h3>
+                    <p>Líder mundial en equipos de pesca desde 1958. Innovación, calidad y rendimiento.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Productos</h3>
+                    <ul>
+                        <li><a href="#">Cañas de Pesca</a></li>
+                        <li><a href="#">Carretes</a></li>
+                        <li><a href="#">Sedales</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Email: info@daiwa-fishing.com</li>
+                        <li>Teléfono: +1 234 567 890</li>
+                        <li>Dirección: 123 Fishing Ave, Ocean City</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Síguenos</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Daiwa Fishing. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filtrado de productos por categoría
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Añadir clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Mostrar/ocultar productos según la categoría
+                    productCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Efecto de scroll suave para los enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
