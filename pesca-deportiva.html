@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcas de Pesca | Aconcagua Deportes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e5631;
+            --primary-dark: #164324;
+            --primary-light: #2a7d46;
+            --secondary: #ca8a04;
+            --secondary-dark: #a56a03;
+            --secondary-light: #e6b325;
+            --accent: #dc2626;
+            --accent-dark: #b91c1c;
+            --accent-light: #ef4444;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #4a5568;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.12);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid var(--white);
+            overflow: hidden;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .accent {
+            color: var(--secondary);
+            margin-left: 2px;
+        }
+        
+        .logo-subtitle {
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+        
+        .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.98rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-info a:hover {
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            padding: 8px;
+            border-radius: 4px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hamburger:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        /* Nav Menu */
+        nav {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--secondary);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+        
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 80%;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.7);
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(30,86,49,0.7), rgba(42,125,70,0.8));
+            z-index: 2;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            line-height: 1.4;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--primary);
+            position: relative;
+            font-weight: 700;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Brands Section */
+        .brands-section {
+            margin-bottom: 80px;
+        }
+        
+        .brands-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .brand-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .brand-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+        
+        .brand-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .brand-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .brand-logo {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+        
+        .brand-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+        
+        .brand-card:hover .brand-logo img {
+            transform: scale(1.05);
+        }
+        
+        .brand-name {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .brand-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(202, 138, 4, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(202, 138, 4, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        /* Categories Section */
+        .categories-section {
+            margin-bottom: 80px;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .category-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--white);
+            font-size: 1.8rem;
+        }
+        
+        .category-name {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .category-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            border-radius: var(--radius);
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.05"><polygon points="1000,100 1000,0 0,100"></polygon></svg>');
+            background-size: cover;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-whatsapp:hover {
+            background: linear-gradient(135deg, #128C7E, #25D366);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #1a202c);
+            color: var(--white);
+            padding: 60px 0 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        
+        .footer-column ul li:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .footer-column ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-column ul li i {
+            color: var(--secondary);
+            width: 16px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            background: linear-gradient(135deg, #128C7E, #25D366);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                box-shadow: var(--shadow-lg);
+                display: none;
+                z-index: 100;
+                border-radius: 0 0 var(--radius) var(--radius);
+                overflow: hidden;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu a {
+                color: var(--dark);
+                border-bottom: 1px solid #eee;
+            }
+            
+            nav {
+                position: relative;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+                width: 100%;
+            }
+            
+            .contact-info a {
+                justify-content: flex-start;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/56941446141?text=Hola,%20me%20interesa%20obtener%20más%20información%20sobre%20sus%20marcas%20de%20pesca" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="index.html" class="logo-container">
+                    <div class="logo-img">
+                        <img src="aconcagua-logo.jpg" alt="Aconcagua Deportes">
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-title">Aconcagua<span class="accent">Deportes</span></div>
+                        <div class="logo-subtitle">PESCA • CAZA • AVENTURA</div>
+                    </div>
+                </a>
+                
+                <div class="contact-info">
+                    <a href="tel:+56941446141">
+                        <i class="fas fa-phone"></i> +56 9 4144 6141
+                    </a>
+                    <a href="mailto:info@aconcaguadeportes.cl">
+                        <i class="fas fa-envelope"></i> info@aconcaguadeportes.cl
+                    </a>
+                </div>
+                
+                <button class="hamburger" aria-label="Abrir menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="caza-responsable.html">Caza</a></li>
+                    <li><a href="marcas-pesca.html" class="active">Marcas de Pesca</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="pesca-hero.jpg" alt="Equipamiento de pesca" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Marcas de Pesca</h1>
+            <p class="hero-subtitle">Las mejores marcas para tu experiencia de pesca en ríos, lagos y mar</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Brands Section -->
+        <section class="brands-section">
+            <h2 class="section-title">Nuestras Marcas de Pesca</h2>
+            <div class="brands-intro">
+                <p>En Aconcagua Deportes trabajamos con las marcas más reconocidas y confiables del mercado de pesca. Cada una de ellas ofrece productos de alta calidad, durabilidad y rendimiento para satisfacer las necesidades de pescadores principiantes y expertos.</p>
+            </div>
+            
+            <div class="brands-grid">
+                <!-- Daiwa -->
+                <div class="brand-card">
+                    <div class="brand-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Logo_D-VEC_de_Daiwa.jpg   " alt="Daiwa">
+                    </div>
+                    <h3 class="brand-name">Daiwa</h3>
+                    <p class="brand-description">Tecnología japonesa de vanguardia para cañas, reeles y equipos de pesca de alto rendimiento.</p>
+                    <a href="daiwa.html" class="btn btn-primary">Ver Productos</a>
+                </div>
+                
+                <!-- Eagle Claw -->
+                <div class="brand-card">
+                    <div class="brand-logo">
+                        <img src="https://scontent-scl2-1.xx.fbcdn.net/v/t1.6435-9/66427274_2398164057108038_6473629335667343360_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEaI2oD1HLXRtVc9btTA2vw9eLu4izlbUb14u7iLOVtRtRA2rBgUd9l9H_vrhMUTUramrKs14XG_oeRt0rTPZ_6&_nc_ohc=NovDtPD8ZFkQ7kNvwH7Cj9N&_nc_oc=Adk7bmlY9EgxnG00UsSHNbmisbGHU31BvNofvNEossgzhuEpMHesnz4tthWQVBfvUQ4&_nc_zt=23&_nc_ht=scontent-scl2-1.xx&_nc_gid=VsZBJMSNrB-6juSqxUjAsQ&oh=00_AfadA6iK3YdaI-G4KUJ2x44BQINdotCRdFwtmTJhGioe8g&oe=68E9B493" alt="Eagle Claw">
+                    </div>
+                    <h3 class="brand-name">Eagle Claw</h3>
+                    <p class="brand-description">Anzuelos y equipos de pesca de calidad americana con más de 90 años de experiencia.</p>
+                    <a href="eagleclaw.html" class="btn btn-primary">Ver Productos</a>
+                </div>
+                
+                <!-- Pelikan -->
+                <div class="brand-card">
+                    <div class="brand-logo">
+                        <img src="https://localdonfacu.cl/storage/images/brand/thumbnail/pelikan.png" alt="Pelikan">
+                    </div>
+                    <h3 class="brand-name">Pelikan</h3>
+                    <p class="brand-description">Señuelos y accesorios de pesca innovadores diseñados para maximizar tus capturas.</p>
+                    <a href="pelikan.html" class="btn btn-primary">Ver Productos</a>
+                </div>
+                
+                <!-- Climax -->
+                <div class="brand-card">
+                    <div class="brand-logo">
+                        <img src="https://outdoorfeat.cl/web/wp-content/uploads/2018/09/marca-climax.png" alt="Climax">
+                    </div>
+                    <h3 class="brand-name">Climax</h3>
+                    <p class="brand-description">Líder en líneas de pesca y sedales de alta resistencia para todo tipo de condiciones.</p>
+                    <a href="climax.html" class="btn btn-primary">Ver Productos</a>
+                </div>
+                
+                <!-- Lazer Sharp -->
+                <div class="brand-card">
+                    <div class="brand-logo">
+                        <img src="https://www.depesca.com/image/cache/catalog/logosmarcas/logo_lazer-sharp-200x200w.jpg" alt="Lazer Sharp">
+                    </div>
+                    <h3 class="brand-name">Lazer Sharp</h3>
+                    <p class="brand-description">Anzuelos de precisión con afilado láser para una penetración superior y mayor efectividad.</p>
+                    <a href="lazer-sharp.html" class="btn btn-primary">Ver Productos</a>
+                </div>
+                
+                <!-- Araty -->
+                <div class="brand-card">
+                    <div class="brand-logo">
+                        <img src="https://dojiw2m9tvv09.cloudfront.net/38080/brand/category_2019083018270926araty.jpg" alt="Araty">
+                    </div>
+                    <h3 class="brand-name">Araty</h3>
+                    <p class="brand-description">Señuelos artesanales brasileños reconocidos mundialmente por su calidad y efectividad.</p>
+                    <a href="araty.html" class="btn btn-primary">Ver Productos</a>
+                </div>
+                
+                <!-- Eagle Claw Trokar -->
+                <div class="brand-card">
+                    <div class="brand-logo">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrsofR3HTQc27cjuWU1r7lFG_uYZTOfscTg5HDwggxcsgeL9ln" alt="Eagle Claw Trokar">
+                    </div>
+                    <h3 class="brand-name">Eagle Claw Trokar</h3>
+                    <p class="brand-description">Tecnología revolucionaria en anzuelos con filos quirúrgicos para máxima penetración.</p>
+                    <a href="eagle-claw-trokar.html" class="btn btn-primary">Ver Productos</a>
+                </div>
+                
+                <!-- Sportex -->
+                <div class="brand-card">
+                    <div class="brand-logo">
+                        <img src="https://www.taffi-tackle-tours.com/wp-content/uploads/2023/07/Sportex.png" alt="Sportex">
+                    </div>
+                    <h3 class="brand-name">Sportex</h3>
+                    <p class="brand-description">Accesorios y equipamiento de pesca de calidad premium para pescadores exigentes.</p>
+                    <a href="sportex.html" class="btn btn-primary">Ver Productos</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h2 class="section-title">Categorías de Pesca</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3 class="category-name">Pesca en Río</h3>
+                    <p class="category-description">Equipamiento especializado para pesca en ríos y corrientes de agua dulce.</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3 class="category-name">Pesca en Lago</h3>
+                    <p class="category-description">Productos ideales para pesca en lagos, embalses y aguas tranquilas.</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-anchor"></i>
+                    </div>
+                    <h3 class="category-name">Pesca en Mar</h3>
+                    <p class="category-description">Equipos resistentes para pesca costera y en alta mar.</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <h3 class="category-name">Accesorios</h3>
+                    <p class="category-description">Todo lo que necesitas para completar tu equipo de pesca.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>¿Necesitas asesoramiento especializado?</h2>
+            <p>Nuestros expertos en pesca te ayudarán a encontrar el equipo perfecto según tus necesidades y el tipo de pesca que practiques.</p>
+            <a href="https://wa.me/56941446141?text=Hola,%20me%20interesa%20obtener%20más%20información%20sobre%20sus%20marcas%20de%20pesca" class="btn btn-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Marcas de Pesca</h3>
+                    <ul>
+                        <li><i class="fas fa-angle-right"></i><a href="daiwa.html">Daiwa</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="eagleclaw.html">Eagle Claw</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="pelikan.html">Pelikan</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="climax.html">Climax</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="lazer-sharp.html">Lazer Sharp</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Productos</h3>
+                    <ul>
+                        <li><i class="fas fa-angle-right"></i><a href="cañas-pesca.html">Cañas de Pesca</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="reeles.html">Reeles</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="señuelos.html">Señuelos</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="anzuelos.html">Anzuelos</a></li>
+                        <li><i class="fas fa-angle-right"></i><a href="accesorios-pesca.html">Accesorios</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Nuestra Tienda</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> San Felipe, Valle del Aconcagua</li>
+                        <li><i class="fas fa-map"></i> Región de Valparaíso, Chile</li>
+                        <li><i class="fas fa-phone"></i> Tel: +56 9 4144 6141</li>
+                        <li><i class="fas fa-envelope"></i> Email: info@aconcaguadeportes.cl</li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Horario de Atención</h3>
+                    <ul>
+                        <li><i class="far fa-clock"></i> Lunes a Viernes: 9:00 - 19:00</li>
+                        <li><i class="far fa-clock"></i> Sábados: 9:00 - 14:00</li>
+                        <li><i class="far fa-clock"></i> Domingos: Cerrado</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Aconcagua Deportes - Pesca y Caza. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = event.target.closest('nav');
+            const isClickInsideHamburger = event.target.closest('.hamburger');
+            
+            if (!isClickInsideNav && !isClickInsideHamburger) {
+                document.querySelector('.nav-menu').classList.remove('active');
+                document.querySelector('.hamburger i').classList.add('fa-bars');
+                document.querySelector('.hamburger i').classList.remove('fa-times');
+            }
+        });
+        
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.brand-card, .category-card').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Add CSS for animations
+            const style = document.createElement('style');
+            style.textContent = `
+                .brand-card, .category-card {
+                    opacity: 0;
+                    transform: translateY(30px);
+                    transition: opacity 0.6s ease, transform 0.6s ease;
+                }
+                
+                .brand-card.animate-in, .category-card.animate-in {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                
+                .brand-card:nth-child(odd) { transition-delay: 0.1s; }
+                .brand-card:nth-child(even) { transition-delay: 0.2s; }
+                .category-card:nth-child(odd) { transition-delay: 0.1s; }
+                .category-card:nth-child(even) { transition-delay: 0.2s; }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
